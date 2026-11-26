@@ -30,14 +30,14 @@ SKYPOST.config = {
     maxPitch: 0.42,             // radians of nose pitch at full deflection
     groundClearance: 2.2,       // the fuselage rides this far above the dirt
     startFuel: 100,             // percent
-    fuelBurnPerSecond: 0.55,    // at cruise throttle
-    boostBurnPerSecond: 2.4,
+    fuelBurnPerSecond: 0.34,    // scaled by throttle in flight.js
+    boostBurnPerSecond: 2.0,
   },
 
   // A leg of the mail run: take off, thread the rings, land at the far strip.
   course: {
-    startTimeSeconds: 150,
-    ringTimeBonus: 8,           // seconds added per ring threaded
+    startTimeSeconds: 165,
+    ringTimeBonus: 10,          // seconds added per ring threaded
     ringScore: 100,             // base points per ring
     centerBonusMax: 200,        // extra points for a dead-center pass
     landingBaseScore: 500,

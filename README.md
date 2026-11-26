@@ -39,10 +39,11 @@ npx serve game          # or: python3 -m http.server -d game
 - **Take off** from Skypost Field: full throttle, pull back past 80 kt.
 - **Thread every gold ring** — the compass tape and the guidance chevron
   point at the next one. A dead-center pass pays up to 300 points and every
-  ring adds 8 seconds to the clock.
+  ring adds 10 seconds to the clock.
 - **Land at Farshore Strip** to deliver: slow, aligned, and gentle for the
-  full 500-point bonus. Ditch in the sea, hit the hills, or run the clock
-  out and the leg is flown again.
+  full 500-point bonus. A gentle touchdown on the flat field beside the
+  strip still delivers the mail, at a rough-field discount. Ditch in the
+  sea, hit the hills, or run the clock out and the leg is flown again.
 - Each delivered leg strings a longer course, and from the second leg the
   archipelago wind starts pushing back.
 

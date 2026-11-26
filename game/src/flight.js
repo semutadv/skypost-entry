@@ -247,8 +247,9 @@ SKYPOST.createFlight = function createFlight(world, seed) {
     // --- fuel ----------------------------------------------------------------
     const burn = plane.boostOn ? P.boostBurnPerSecond
       : P.fuelBurnPerSecond * (0.35 + plane.throttle);
+    const hadFuel = plane.fuel > 0;
     plane.fuel = Math.max(0, plane.fuel - burn * dt);
-    if (plane.fuel === 0) emit('fuelEmpty');
+    if (hadFuel && plane.fuel === 0) emit('fuelEmpty'); // once, on the transition
 
     // --- rings ---------------------------------------------------------------
     const ring = flight.rings[flight.ringIndex];
@@ -301,6 +302,17 @@ SKYPOST.createFlight = function createFlight(world, seed) {
         const gained = Math.round(C.landingBaseScore * (0.4 + quality));
         flight.score += gained;
         emit('landed', { gained, quality });
+      } else if (plane.speed < 58 && plane.verticalSpeed > -6.5 &&
+          Math.hypot(world.wrappedDelta(plane.x, dest.cx), world.wrappedDelta(plane.z, dest.cz)) < 300 &&
+          Math.abs(world.heightAt(plane.x, plane.z) - dest.altitude) < 7) {
+        // Down on the flat airfield plateau but off the strip itself: the
+        // mail still counts as delivered, at a rough-field discount. The
+        // strip remains the skill shot that pays in full.
+        flight.state = 'landed';
+        flight.landingQuality = 'Rough field';
+        const gained = Math.round(C.landingBaseScore * 0.3);
+        flight.score += gained;
+        emit('landed', { gained, quality: 0.3 });
       } else if (homeInfo.on && plane.speed < 58 && plane.verticalSpeed > -6.5 &&
           Math.abs(angleDiff(plane.heading, home.heading)) < 0.42) {
         // A touch-and-go back home: wheels down, roll out, go again.
