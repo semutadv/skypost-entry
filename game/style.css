@@ -1,0 +1,31 @@
+/* SKYPOST page frame: the game is the whole window, letterboxed by the
+ * browser's own chrome only. No webfonts, no images — the canvas is all. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #0a1420;
+  overflow: hidden;
+}
+
+#game {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+#fallback {
+  display: none;
+  color: #dcebf8;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+#fallback h1 {
+  color: #ffd23f;
+  letter-spacing: 0.35em;
+}
